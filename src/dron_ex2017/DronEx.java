@@ -22,21 +22,22 @@ import javax.swing.SwingUtilities;
 //====================================================
 public class DronEx extends JPanel implements Runnable, KeyListener {
     //-- 変数宣言 --
-    //private final int WIDTH  = 500;
-    //private final int HEIGHT = 500;
+    private final int WIDTH  = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
+    private final int HEIGHT = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
     private Color state[][];
-	private int xSize, ySize;
+	private int xSize, ySize;           // 黒い枠の大きさ
 	private int block;
 	private int xL, yL, xR, yR;
 	private int dxL, dyL, dxR, dyR;
-	private boolean liveL, liveR;
-	private Thread thread;
-	private String message;
-	private Font font;
+	private boolean liveL, liveR;       // 右プレーヤーと左プレーヤーの勝敗判定
+	private Thread thread;              // スレッド
+	private String message;             // メッセージ
+	private Font font;                  // フォント
 
 	private int width, height;
 	private int countR, countL;
 
+    /* 黒い枠の作成 */
 	private void initialize() {
 		int i,j;
 
@@ -56,11 +57,11 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		liveL = liveR = true;
 	}
 
-    //-- コンストラクタ --
+    /* コンストラクタ */
     public DronEx() {
-        setPreferredSize(new Dimension(320, 360));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-		xSize = ySize = 80;
+		xSize = ySize = 100;
 		block = 4;
 		state = new Color[xSize][ySize];
 		message = "Game started!";
@@ -73,6 +74,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		startThread();
     }
 
+    /* スレッドのスタート */
     public void startThread() {
 		if (thread == null) {
 			thread = new Thread(this);
@@ -80,6 +82,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+    /* スレッドの停止 */
 	public void stopThread() {
 		if (thread != null) {
 			thread = null;
@@ -144,7 +147,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 				}
 				repaint();
 				try{
-					Thread.sleep(250);
+					Thread.sleep(250);    // ここの数値を小さくすれば難易度が上がる
 				} catch(InterruptedException e) {}
 			}
 			try{
