@@ -9,7 +9,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
 
 			JFrame frame = new JFrame("DronEx!");
-			frame.add(new DronEx());
+			frame.add( new DronEx() );
 			frame.pack();
 			frame.setVisible(true);
 
