@@ -25,31 +25,32 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
     private final int WIDTH  = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
     private final int HEIGHT = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
     private Color state[][];
-	private int xSize, ySize;           // 黒い枠の大きさ
-	private int block;
-	private int xL, yL, xR, yR;
-	private int dxL, dyL, dxR, dyR;
-	private boolean liveL, liveR;       // 右プレーヤーと左プレーヤーの勝敗判定
-	private Thread thread;              // スレッド
-	private String message;             // メッセージ
-	private Font font;                  // フォント
+    private int xSize, ySize;           // 黒い枠の大きさ
+	  private int block;
+	  private int xL, yL, xR, yR;
+	  private int dxL, dyL, dxR, dyR;
+	  private boolean liveL, liveR;       // 右プレーヤーと左プレーヤーの勝敗判定
+	  private Thread thread;              // スレッド
+	  private String message;             // メッセージ
+	  private Font font;                  // フォント
 
-	private int width, height;
-	private int countR, countL;
+	  private int width, height;
+	  private int countR, countL;
 
     /* 黒い枠の作成 */
-	private void initialize() {
-		int i,j;
+	  private void initialize() {
+		    int i,j;
 
-		for(j = 0; j < ySize; j++) {
-			state[0][j] = state[xSize - 1][j] = Color.BLACK;
+		    for(j = 0; j < ySize; j++) {
+			      state[0][j] = state[xSize - 1][j] = Color.BLACK;
+		    }
+		    for (i = 1; i < xSize - 1; i++) {
+			      state[i][0] = state[i][ySize - 1] = Color.BLACK;
+			  for (j = 1; j < ySize - 1; j++) {
+				    state[i][j] = Color.WHITE;
+			  }
 		}
-		for (i = 1; i < xSize - 1; i++) {
-			state[i][0] = state[i][ySize - 1] = Color.BLACK;
-			for (j = 1; j < ySize - 1; j++) {
-				state[i][j] = Color.WHITE;
-			}
-		}
+
 		xL = yL = 2;
 		xR = xSize - 3; yR = ySize - 3;
 		dxL = dxR = 0;
