@@ -105,9 +105,9 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		g.setColor(Color.GREEN.darker());
 		g.drawString(message, 2 * block, block * (ySize+3));
 		g.setColor(Color.RED.darker());
-		g.drawString("Left:  A(L), S(D), D(U), F(R)", 2 * block, block * (ySize + 6));
+		g.drawString("Left:  A(←), Z(↓), W(↑), S(→)", 2 * block, block * (ySize + 6));
 		g.setColor(Color.BLUE.darker());
-		g.drawString("Right: H(L), J(D), K(U), L(R)", 2 * block, block * (ySize + 9));
+		g.drawString("Right: J(←), M(↓), I(↑), K(→)", 2 * block, block * (ySize + 9));
 	}
 
     //-- オーバーライド(これらがないとコンパイルエラー) --
@@ -166,13 +166,13 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
         int key = e.getKeyCode();
 		switch (key) {
 		    case 'A':  dxL = -1; dyL =  0; break;
-		    case 'S':  dxL =  0; dyL =  1; break;
-		    case 'D':  dxL =  0; dyL = -1; break;
-		    case 'F':  dxL =  1; dyL =  0; break;
-		    case 'H':  dxR = -1; dyR =  0; break;
-		    case 'J':  dxR =  0; dyR =  1; break;
-		    case 'K':  dxR =  0; dyR = -1; break;
-		    case 'L':  dxR =  1; dyR =  0; break;
+		    case 'Z':  dxL =  0; dyL =  1; break;
+		    case 'W':  dxL =  0; dyL = -1; break;
+		    case 'S':  dxL =  1; dyL =  0; break;
+		    case 'J':  dxR = -1; dyR =  0; break;
+		    case 'M':  dxR =  0; dyR =  1; break;
+		    case 'I':  dxR =  0; dyR = -1; break;
+		    case 'K':  dxR =  1; dyR =  0; break;
         }
     }
 
