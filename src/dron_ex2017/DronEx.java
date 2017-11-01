@@ -59,8 +59,8 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 	}
 
     /* コンストラクタ */
-    public DronEx() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+  public DronEx() {
+    setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		xSize = ySize = 100;
 		block = 4;
@@ -73,10 +73,10 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		width = size.width; height = size.height;
 
 		startThread();
-    }
+  }
 
     /* スレッドのスタート */
-    public void startThread() {
+  public void startThread() {
 		if (thread == null) {
 			thread = new Thread(this);
 			thread.start();
@@ -90,7 +90,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
-    @Override
+  @Override
 	public void paintComponent(Graphics g) {
 
 		g.clearRect(0, 0, width, height);
@@ -112,9 +112,9 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 	}
 
     //-- オーバーライド(これらがないとコンパイルエラー) --
-    @Override
-    public void run() {
-        Thread thisThread = Thread.currentThread();
+  @Override
+  public void run() {
+    Thread thisThread = Thread.currentThread();
 		while (thisThread == thread) {
 			initialize();
 			requestFocus();
@@ -164,17 +164,17 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-		switch (key) {
+      int key = e.getKeyCode();
+		  switch (key) {
 		    case 'A':  dxL = -1; dyL =  0; break;
 		    case 'S':  dxL =  0; dyL =  1; break;
 		    case 'D':  dxL =  0; dyL = -1; break;
 		    case 'F':  dxL =  1; dyL =  0; break;
 		    case 'H':  dxR = -1; dyR =  0; break;
 		    case 'J':  dxR =  0; dyR =  1; break;
-		    case 'K':  dxR =  0; dyR = -1; break;
+	      case 'K':  dxR =  0; dyR = -1; break;
 		    case 'L':  dxR =  1; dyR =  0; break;
-        }
+      }
     }
 
     @Override
