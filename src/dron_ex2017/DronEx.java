@@ -58,7 +58,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 	}
 
     /* コンストラクタ */
-    public DronEx() {
+    public DronEx(Main const_main, String s) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		xSize = ySize = 100;
