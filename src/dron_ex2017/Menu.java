@@ -16,7 +16,8 @@ import java.awt.Image;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.awt.geom.AffineTransform;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import java.io.IOException;
 import java.io.File;
@@ -28,11 +29,13 @@ import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.lang.Thread;
+import java.applet.AudioClip;
+import java.applet.Applet;
 
 // ==================================================================================
 // Menuクラス
 // ==================================================================================
-public class Menu extends JPanel implements KeyListener, Runnable, ActionListener {
+public class Menu extends JPanel implements KeyListener, Runnable, ActionListener, MouseListener {
     // ==================================================================================
     // 変数宣言
     // ==================================================================================
@@ -44,7 +47,11 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
     private BufferedImage image;
     Timer timer;
     Thread thread;
-    JButton startGame, exit, staffCredits;
+    JButton exit, staffCredits;
+    GameButton startGame;
+    Sounds bgm = new Sounds();
+    ImageIcon gameStart_n, gameStart_h, gameStart_p; // n = normal h = highlight p = push
+    ImageIcon gameExit_n, gameExit_h, gameExit_p;
 
     // ==================================================================================
     // コンストラクタ
@@ -61,30 +68,8 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         setFocusable(true);                                  // パネルのキーボード入力受け付け
         addKeyListener(this);                                // 本オブジェクトをkeyListenerの対象に加える
 
-        /* ゲーム開始催促ラベルの生成 */
-        /*
-        title = new JLabel("Press Enter key!!");
-        title.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
-        title.setBounds(120, 200, 400, 400);
-        this.add(title);
-        */
-        /* ラベルの点滅 */
-        /*
-        timer = new Timer(600, new ActionListener() {
-            boolean flag;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (flag) {
-                    title.setForeground(Color.BLACK);
-                    flag = false;
-                } else {
-                    title.setForeground(Color.WHITE);
-                    flag = true;
-                }
-            }
-        });
-        timer.start();
-        */
+        /* マウスイベントの受け付け */
+        addMouseListener(this);
 
         /* 背景画像の読み込み */
         try {
@@ -95,22 +80,35 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
 
         // ==== ボタン関係 ====
         /* ゲーム開始 */
-        startGame = new JButton("Game Start!!");   // ゲームスタートボタン
-        startGame.addActionListener(this);         // これがないとボタン操作を受け付けない
-        startGame.setBounds(150, 150, 200, 50);    // ボタンの配置および大きさ
-        this.add(startGame);                       // パネルにボタンを追加
+        gameStart_n = new ImageIcon("images/gameStartButton/gameStart_n.png");  // 通常状態のボタン
+        gameStart_h = new ImageIcon("images/gameStartButton/gameStart_h.png");  // ロールオーバー時のアイコン
+        gameStart_p = new ImageIcon("images/gameStartButton/gameStart_p.png");  // 押された時のアイコン
+        startGame = new GameButton("Game Start!!!", gameStart_n);               // ゲームスタートボタン
+        startGame.setPressedIcon(gameStart_p);                                  // 押された時の状態
+        startGame.setRolloverIcon(gameStart_h);                                 // ロールオーバー時の状態
+        startGame.setContentAreaFilled(false);                                  // デフォルトボタンの中身を消す
+        startGame.setBorderPainted(false);                                      // デフォルトボタンの枠線を消す
+        startGame.addActionListener(this);                                      // これがないとボタン操作を受け付けない
+        startGame.setBounds(90, 180, 320, 80);                                  // ボタンの配置および大きさ
+        this.add(startGame);                                                    // パネルにボタンを追加
 
         /* ゲーム終了 */
-        exit = new JButton("Exit");
+        /*
+
+
+        exit = new GameButton("Exit");
         exit.addActionListener(this);
-        exit.setBounds(150, 200, 200, 50);
+        exit.setBounds(90, 270, 320, 80);
         this.add(exit);
+        */
 
         /* スタッフクレジット */
-        staffCredits = new JButton("Staff Credits");
+        /*
+        staffCredits = new GameButton("Staff Credits");
         staffCredits.addActionListener(this);
-        staffCredits.setBounds(150, 250, 200, 50);
+        staffCredits.setBounds(90, 360, 320, 80);
         this.add(staffCredits);
+        */
     }
 
     // ==================================================================================
@@ -199,4 +197,27 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
 
     @Override
     public void run() {}
+
+    // ==================================================================================
+    // マウスイベント
+    // ==================================================================================
+    @Override
+    public void mouseClicked(MouseEvent ev) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent ev) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent ev) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent ev) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent ev) {
+    }
 }

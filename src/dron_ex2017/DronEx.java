@@ -183,7 +183,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		    case 'K':  dxR =  0; dyR = -1; break;
 		    case 'L':  dxR =  1; dyR =  0; break;
             /* 追加したもの */
-            case 'Y':  pc(m.PanelNames[0]);  break;// ゲーム再開
+            case 'Y':  pc(m.PanelNames[0]);   break;// ゲーム再開
             case 'N':  pc(m.PanelNames[0]);   break;// メニューに戻る
         }
     }
@@ -197,6 +197,7 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
     // 画面の遷移
     // ==================================================================================
     public void pc(String str) {                             // 画面遷移の要求を出す
-        m.PanelChange((JPanel)this, str);                      // 画面遷移の要求
+        System.out.println(Thread.currentThread().getName());
+        m.PanelChange((JPanel)this, m.PanelNames[1], str);                      // 画面遷移の要求
     }
 }
