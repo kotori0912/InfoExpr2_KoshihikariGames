@@ -12,6 +12,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.*;
+import java.awt.*;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,6 +40,9 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 	private int width, height;
 	private int countR, countL;
 
+    /* 追加した変数 */
+    private Main m;
+
     /* 黒い枠の作成 */
 	private void initialize() {
 		int i,j;
@@ -60,6 +66,9 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
     /* コンストラクタ */
     public DronEx(Main const_main, String s) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+        /* 追加 */
+        m = const_main;
 
 		xSize = ySize = 100;
 		block = 4;
@@ -173,6 +182,9 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 		    case 'J':  dxR =  0; dyR =  1; break;
 		    case 'K':  dxR =  0; dyR = -1; break;
 		    case 'L':  dxR =  1; dyR =  0; break;
+            /* 追加したもの */
+            case 'Y':  pc(m.PanelNames[0]);  break;// ゲーム再開
+            case 'N':  pc(m.PanelNames[0]);   break;// メニューに戻る
         }
     }
 
@@ -181,4 +193,10 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 
     }
 
+    // ==================================================================================
+    // 画面の遷移
+    // ==================================================================================
+    public void pc(String str) {                             // 画面遷移の要求を出す
+        m.PanelChange((JPanel)this, str);                      // 画面遷移の要求
+    }
 }

@@ -60,7 +60,7 @@ public class Main extends JFrame {
         } else if (name == PanelNames[1]) {             // Gameから抜ける
             game = (DronEx)jp;                          // DronEx型にキャスト
             game.setVisible(false);                     // gameを見えなくする
-        }
+        } 
 
         /* ウィンドウを開く処理 */
         if(str == PanelNames[0]) {                      // Menu型オブジェクトを表示する要求を受けたら
@@ -73,6 +73,8 @@ public class Main extends JFrame {
 			    frame.pack();
 			    frame.setVisible(true);
             });
+        } else if (str == PanelNames[2]) {               // スタッフクレジット
+
         }
     }
 }

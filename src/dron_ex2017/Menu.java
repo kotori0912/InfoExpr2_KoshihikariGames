@@ -32,7 +32,7 @@ import java.lang.Thread;
 // ==================================================================================
 // Menuクラス
 // ==================================================================================
-public class Menu extends JPanel implements KeyListener {
+public class Menu extends JPanel implements KeyListener, Runnable, ActionListener {
     // ==================================================================================
     // 変数宣言
     // ==================================================================================
@@ -44,6 +44,7 @@ public class Menu extends JPanel implements KeyListener {
     private BufferedImage image;
     Timer timer;
     Thread thread;
+    JButton startGame, exit, staffCredits;
 
     // ==================================================================================
     // コンストラクタ
@@ -61,11 +62,14 @@ public class Menu extends JPanel implements KeyListener {
         addKeyListener(this);                                // 本オブジェクトをkeyListenerの対象に加える
 
         /* ゲーム開始催促ラベルの生成 */
+        /*
         title = new JLabel("Press Enter key!!");
         title.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 30));
         title.setBounds(120, 200, 400, 400);
         this.add(title);
+        */
         /* ラベルの点滅 */
+        /*
         timer = new Timer(600, new ActionListener() {
             boolean flag;
             @Override
@@ -80,12 +84,50 @@ public class Menu extends JPanel implements KeyListener {
             }
         });
         timer.start();
+        */
 
         /* 背景画像の読み込み */
         try {
             image = ImageIO.read(new File("images/menu.png"));
         } catch (IOException e) {
             System.out.println("画像読み込み不可");
+        }
+
+        // ==== ボタン関係 ====
+        /* ゲーム開始 */
+        startGame = new JButton("Game Start!!");   // ゲームスタートボタン
+        startGame.addActionListener(this);         // これがないとボタン操作を受け付けない
+        startGame.setBounds(150, 150, 200, 50);    // ボタンの配置および大きさ
+        this.add(startGame);                       // パネルにボタンを追加
+
+        /* ゲーム終了 */
+        exit = new JButton("Exit");
+        exit.addActionListener(this);
+        exit.setBounds(150, 200, 200, 50);
+        this.add(exit);
+
+        /* スタッフクレジット */
+        staffCredits = new JButton("Staff Credits");
+        staffCredits.addActionListener(this);
+        staffCredits.setBounds(150, 250, 200, 50);
+        this.add(staffCredits);
+    }
+
+    // ==================================================================================
+    // ボタン操作の受け付け
+    // ==================================================================================
+    public void actionPerformed(ActionEvent event) {
+        /* ゲーム開始 */
+        if (event.getSource() == startGame) {
+            System.out.println("ボタン押された");  // デバックメッセージ
+            pc(m.PanelNames[1]);                 // ゲームスタート
+        }
+        /* ゲームの終了 */
+        if (event.getSource() == exit) {
+            System.exit(0);
+        }
+        if (event.getSource() == staffCredits) {
+            pc(m.PanelNames[2]);
         }
     }
 
@@ -109,34 +151,24 @@ public class Menu extends JPanel implements KeyListener {
         g.drawImage(image, 0, 0, (int)sw, (int)sh, this);  // 画像を表示
     }
 
+
     // ==================================================================================
     // ゲームスタート
     // ==================================================================================
+    @Override
     public void keyPressed(KeyEvent e) {
         int cnt = 0;
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_ENTER) {              // エンターキーでゲームスタート
             //System.out.println("Enterキー押されたお");
-            timer = new Timer(100, new ActionListener() {
-                boolean flag;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (flag) {
-                        title.setForeground(Color.BLACK);
-                        flag = false;
-                    } else {
-                        title.setForeground(Color.WHITE);
-                        flag = true;
-                    }
-                }
-            });
-            timer.start();
             pc(m.PanelNames[1]);
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {}
 
+    @Override
     public void keyTyped(KeyEvent e) {}
 
     // ==================================================================================
@@ -145,4 +177,26 @@ public class Menu extends JPanel implements KeyListener {
     public void pc(String str) {                             // 画面遷移の要求を出す
         m.PanelChange((JPanel)this, str);                      // 画面遷移の要求
     }
+
+    // ==================================================================================
+    // スレッドの開始
+    // ==================================================================================
+    public void startThread() {
+        if (thread == null) {
+            thread = new Thread();
+            thread.start();
+        }
+    }
+
+    // ==================================================================================
+    // スレッドの停止
+    // ==================================================================================
+    public void stopThread() {
+		if (thread != null) {
+			thread = null;
+		}
+	}
+
+    @Override
+    public void run() {}
 }
