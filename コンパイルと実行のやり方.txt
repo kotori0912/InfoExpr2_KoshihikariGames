@@ -1,0 +1,8 @@
+1. まずsrcディレクトリに入る
+cd src/
+
+2. コンパイルする
+javac dron_ex2017/Main.java
+
+3. 実行する
+java dron_ex2017.Main

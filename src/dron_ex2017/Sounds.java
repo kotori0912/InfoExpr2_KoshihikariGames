@@ -1,3 +1,6 @@
+// ==================================================================================
+// 
+// ==================================================================================
 package dron_ex2017;
 
 // ==================================================================================
@@ -8,13 +11,39 @@ import javax.swing.JApplet;
 
 public class Sounds {
     /* 音楽ファイル 定義 */
-    private AudioClip ButtonHighlightSE;
+    private AudioClip buttonHighlightSE;
+    private AudioClip buttonPushed;
+    private AudioClip stageBgm;
+    private AudioClip menuBgm;
 
+    // ==================================================================================
+    // コンストラクタ(変数に音を代入)
+    // ==================================================================================
     public Sounds() {
-        ButtonHighlightSE = JApplet.newAudioClip(getClass().getResource("sounds/chari05_b.wav"));
+        buttonHighlightSE = JApplet.newAudioClip(getClass().getResource("sounds/chari05_b.wav"));
+        buttonPushed = JApplet.newAudioClip(getClass().getResource("sounds/click.wav"));
     }
 
+    // ==================================================================================
+    // ボタン音
+    // ==================================================================================
+    /* マウスポインタがオブジェクトに入った時の音 */
     public void buttonHighlight() {
-        ButtonHighlightSE.play();       //
+        buttonHighlightSE.play();
     }
+
+    /* ボタンが押された時の音 */
+    public void buttonPushed() {
+        buttonPushed.play();
+    }
+
+    // ==================================================================================
+    // ステージBGM
+    // ==================================================================================
+    public void stageBgm() {}
+
+    // ==================================================================================
+    // メニューBGM
+    // ==================================================================================
+    public void menuBgm() {}
 }

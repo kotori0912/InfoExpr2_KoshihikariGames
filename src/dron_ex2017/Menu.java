@@ -73,13 +73,14 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
 
         /* 背景画像の読み込み */
         try {
-            image = ImageIO.read(new File("images/menu.png"));
+            //image = ImageIO.read(new File("images/menu.png"));
+            image = ImageIO.read(new File("images/menu_alpha.png"));
         } catch (IOException e) {
             System.out.println("画像読み込み不可");
         }
 
         // ==== ボタン関係 ====
-        /* ゲーム開始 */
+        /* ゲーム開始ボタン */
         gameStart_n = new ImageIcon("images/gameStartButton/gameStart_n.png");  // 通常状態のボタン
         gameStart_h = new ImageIcon("images/gameStartButton/gameStart_h.png");  // ロールオーバー時のアイコン
         gameStart_p = new ImageIcon("images/gameStartButton/gameStart_p.png");  // 押された時のアイコン
@@ -92,15 +93,18 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         startGame.setBounds(90, 180, 320, 80);                                  // ボタンの配置および大きさ
         this.add(startGame);                                                    // パネルにボタンを追加
 
-        /* ゲーム終了 */
-        /*
-
-
-        exit = new GameButton("Exit");
+        /* ゲーム終了ボタン */
+        gameExit_n = new ImageIcon("images/gameExitButton/gameExit_n.png");   // 通常状態のボタン
+        gameExit_h = new ImageIcon("images/gameExitButton/gameExit_h.png");   // ロールオーバー時のボタン
+        gameExit_p = new ImageIcon("images/gameExitButton/gameExit_p.png");   // 押された時のボタン
+        exit = new GameButton("Exit", gameExit_n);                            // Exitボタンの生成
+        exit.setPressedIcon(gameExit_p);                                      // 押された時の状態
+        exit.setRolloverIcon(gameExit_h);                                     // ロールオーバー時の状態
+        exit.setContentAreaFilled(false);                                     // デフォルトボタンの中身を消す
+        exit.setBorderPainted(false);                                         // デフォルトボタンの枠線を消す
         exit.addActionListener(this);
         exit.setBounds(90, 270, 320, 80);
         this.add(exit);
-        */
 
         /* スタッフクレジット */
         /*
@@ -109,6 +113,7 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         staffCredits.setBounds(90, 360, 320, 80);
         this.add(staffCredits);
         */
+        //Nexus_ex ne = new Nexus_ex();
     }
 
     // ==================================================================================
