@@ -23,7 +23,7 @@ import java.util.Random;
 //クラス
 //====================================================
 
-public class DronEX extends JPanel implements Runnable, KeyListener {
+public class DronEx extends JPanel implements Runnable, KeyListener {
 	//-- 変数宣言 --
 	private final int WIDTH  = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
 	private final int HEIGHT = 500;     // ここは変更しないこと(ただしゲーム表示部の大きさは変えて良い)
@@ -43,7 +43,7 @@ public class DronEX extends JPanel implements Runnable, KeyListener {
 	private int wid1, wid2;
 
 	//Randomクラスのインスタンス化
-	Random rnd = new Random();    
+	Random rnd = new Random();
 	private int ranX_1, ranY_1;
 	private int ranX_2, ranY_2;
 
@@ -73,7 +73,7 @@ public class DronEX extends JPanel implements Runnable, KeyListener {
 	}
 
 	/* コンストラクタ */
-	public Dron_ex2017() {
+	public DronEx() {
 
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		xSize = ySize = 100;
@@ -86,8 +86,8 @@ public class DronEX extends JPanel implements Runnable, KeyListener {
 
 		while(flag == 0) {
 			ranX_2 = rnd.nextInt(randomWid) + margin;    //乱数の生成 ranX_2
-			ranY_2 = rnd.nextInt(randomWid) + margin;    //乱数の生成 ranY_2		
-			if((Math.abs(ranX_1 - ranX_2)) >= margin && (Math.abs(ranY_1 - ranY_2)) >= margin) {//アイテム同士の重複防止		
+			ranY_2 = rnd.nextInt(randomWid) + margin;    //乱数の生成 ranY_2
+			if((Math.abs(ranX_1 - ranX_2)) >= margin && (Math.abs(ranY_1 - ranY_2)) >= margin) {//アイテム同士の重複防止
 				flag = 1;
 			}
 		}
@@ -212,7 +212,7 @@ public class DronEX extends JPanel implements Runnable, KeyListener {
 
 				repaint();
 
-				try { 
+				try {
 
 					if(yL >= ((ranY_1 - wid1) / block) && yL <= ((ranY_1 + 10)/ block) && xL >= (ranX_1 / block) && xL <= ((ranX_1 + wid1) / block)) {
 						Thread.sleep(50);
@@ -225,7 +225,7 @@ public class DronEX extends JPanel implements Runnable, KeyListener {
 					}
 					else if(yR >= ((ranY_1 - wid1) / block) && yR <= ((ranY_1 + 10) / block) && xR >= (ranX_1 / block) && xR <= ((ranX_1 + wid1) / block)) {
 						Thread.sleep(50);
-					}	
+					}
 					else {
 						Thread.sleep(250);    // ここの数値を小さくすれば難易度が上がる
 					}
