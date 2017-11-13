@@ -49,7 +49,6 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
     Thread thread;
     JButton exit, staffCredits;
     GameButton startGame;
-    Sounds bgm = new Sounds();
     ImageIcon gameStart_n, gameStart_h, gameStart_p; // n = normal h = highlight p = push
     ImageIcon gameExit_n, gameExit_h, gameExit_p;
 
@@ -58,9 +57,9 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
     // ==================================================================================
     public Menu(Main const_main, String s) {
         /* 変数宣言 */
-
         m = const_main;                                      // Main型オブジェクトの格納
         str = s;                                             // 文字列の取得
+
         this.setName("Menu");                                // オブジェクト名を設定
         this.setLayout(null);                                // レイアウトは使わない
 
@@ -73,8 +72,8 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
 
         /* 背景画像の読み込み */
         try {
-            //image = ImageIO.read(new File("images/menu.png"));
-            image = ImageIO.read(new File("images/menu_alpha.png"));
+            //image = ImageIO.read(new File("images/menu.png"));         // 透明度なし
+            image = ImageIO.read(new File("images/menu_alpha.png"));     // 透明度あり
         } catch (IOException e) {
             System.out.println("画像読み込み不可");
         }

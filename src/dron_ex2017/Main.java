@@ -25,6 +25,7 @@ public class Main extends JFrame {
     Menu m      = new Menu(this, PanelNames[0]);
     DronEx game = new DronEx(this, PanelNames[1]);
     JFrame frame;
+    Sounds sounds = new Sounds();
 
     // ==================================================================================
     // 起動直後にメニューを表示 コンストラクタ
@@ -59,6 +60,7 @@ public class Main extends JFrame {
             //System.out.println("ウィンドウを閉じる");
             m.setVisible(false);                        // メニューを見えなくする(メモリ上には残る)
         } else if (name == PanelNames[1]) {             // Gameから抜ける
+            sounds.stageBgmStop();
             System.out.println("ゲームウィンドウを閉じた");
             game = (DronEx)jp;                          // DronEx型にキャスト
             game.setVisible(false);                     // gameを見えなくする
@@ -70,7 +72,7 @@ public class Main extends JFrame {
             m.setVisible(true);                           // Menu型オブジェクトを表示する
         } else if (str == PanelNames[1]) {              // ゲームを起動する要求を受けたら
             //System.out.println("ゲーム起動");               // デバック出力
-
+            sounds.stageBgm();
             SwingUtilities.invokeLater(() -> {            // ゲーム開始の処理↓
 			    frame = new JFrame("DronEx!");
 			    frame.add( new DronEx(this, PanelNames[1]) );
@@ -80,25 +82,6 @@ public class Main extends JFrame {
             });
         } else if (str == PanelNames[2]) {               // スタッフクレジット
 
-        }
-    }
-    // ==================================================================================
-    // 画面遷移(JPanel型オブジェクトがnullの時に使う)
-    // ==================================================================================
-    public void PanelChange(JPanel jp, String close, String open) {
-        String name = jp.getName();
-
-        /* ウィンドウを閉じる処理 */
-        if ( name == null && close == "Game" ) {
-            System.out.println("ゲームウィンドウを閉じた");
-            game = (DronEx)jp;                          // DronEx型にキャスト
-            game.setVisible(false);                     // gameを見えなくする
-            frame.setVisible(false);
-        }
-
-        /* ウィンドウを開く処理 */
-        if(open == PanelNames[0]) {                      // Menu型オブジェクトを表示する要求を受けたら
-            m.setVisible(true);                           // Menu型オブジェクトを表示する
         }
     }
 }

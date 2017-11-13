@@ -1,5 +1,5 @@
 // ==================================================================================
-// 
+//
 // ==================================================================================
 package dron_ex2017;
 
@@ -22,6 +22,7 @@ public class Sounds {
     public Sounds() {
         buttonHighlightSE = JApplet.newAudioClip(getClass().getResource("sounds/chari05_b.wav"));
         buttonPushed = JApplet.newAudioClip(getClass().getResource("sounds/click.wav"));
+        stageBgm = JApplet.newAudioClip(getClass().getResource("sounds/bgml044.wav"));
     }
 
     // ==================================================================================
@@ -40,7 +41,13 @@ public class Sounds {
     // ==================================================================================
     // ステージBGM
     // ==================================================================================
-    public void stageBgm() {}
+    public void stageBgm() {
+        stageBgm.loop();
+    }
+
+    public void stageBgmStop() {
+        stageBgm.stop();
+    }
 
     // ==================================================================================
     // メニューBGM

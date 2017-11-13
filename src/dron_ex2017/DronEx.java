@@ -20,6 +20,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+/* 追加 *///~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import javax.swing.JFrame;
+
+
+
+
+import java.awt.Rectangle;
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 //====================================================
 // クラス
 //====================================================
@@ -40,8 +54,10 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 	private int width, height;
 	private int countR, countL;
 
-    /* 追加した変数 */
+    /* 追加 *///~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private Main m;
+    private BufferedImage image;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     /* 黒い枠の作成 */
 	private void initialize() {
@@ -67,8 +83,10 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
     public DronEx(Main const_main, String s) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        /* 追加 */
-        m = const_main;
+        /* 追加 *///~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        m = const_main;             // main型オブジェクトを読み込み
+        this.setName("Game");       // 本オブジェクト名をセット(これがないと画面遷移が行われないので注意！)
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 		xSize = ySize = 100;
 		block = 4;
@@ -160,7 +178,8 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
 				} catch(InterruptedException e) {}
 			}
 			try{
-				Thread.sleep(1750);
+                stopThread();
+				Thread.sleep(1750);    // 勝負がついたときの待ち時間
 			} catch(InterruptedException e) {}
 		}
     }
@@ -197,7 +216,6 @@ public class DronEx extends JPanel implements Runnable, KeyListener {
     // 画面の遷移
     // ==================================================================================
     public void pc(String str) {                             // 画面遷移の要求を出す
-        System.out.println(Thread.currentThread().getName());
-        m.PanelChange((JPanel)this, m.PanelNames[1], str);                      // 画面遷移の要求
+        m.PanelChange((JPanel)this, str);                      // 画面遷移の要求
     }
 }
