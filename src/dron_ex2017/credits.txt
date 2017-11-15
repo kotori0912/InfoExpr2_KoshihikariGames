@@ -1,0 +1,25 @@
+◎ 効果音
+- ザ・マッチメイカァズ2nd
+http://osabisi.sakura.ne.jp/m2/
+
+- 闇詠乃 功良
+http://crow.yaekumo.com/ikusa.html
+
+◎ 担当 
+- s15t206 : 効果音等
+- s15t207 : ゲーム
+- s15t212 : UI
+- s15t215 : ゲーム
+
+◎ 参考サイト
+- 複数のJPanelで画面遷移2
+http://nowloading.blog.jp/archives
+ /36741210.html
+
+- ボタンの様々な状態と状態別の画像の設定
+https://www.javadrive.jp/tutorial/jbutton
+ /index10.html
+
+- WAVEの再生
+http://aidiary.hatenablog.com/entry
+ /20041003/1251379247

@@ -26,7 +26,7 @@ public class GameButton extends JButton implements MouseListener, ActionListener
     // ==================================================================================
     public GameButton(String s, ImageIcon i) {
         super(s, i);                                   // 親クラス(JButton)のコンストラクタに名前と画像をセット
-        System.out.println("GameStartButtonメソッド");  // デバッグメッセージ
+        //System.out.println("GameStartButtonメソッド");  // デバッグメッセージ
         addMouseListener(this);                        // マウスの入力を受け付ける
     }
 

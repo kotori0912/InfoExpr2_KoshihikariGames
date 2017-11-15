@@ -45,12 +45,14 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
     private final int HEIGHT = 500;
     private String str;
     private BufferedImage image;
-    Timer timer;
-    Thread thread;
-    JButton exit, staffCredits;
-    GameButton startGame;
-    ImageIcon gameStart_n, gameStart_h, gameStart_p; // n = normal h = highlight p = push
-    ImageIcon gameExit_n, gameExit_h, gameExit_p;
+    private Timer timer;
+    private Thread thread;
+    private JButton exit;
+    private GameButton startGame;
+    private GameButton staffCredits;
+    private ImageIcon gameStart_n, gameStart_h, gameStart_p; // n = normal h = highlight p = push
+    private ImageIcon gameExit_n, gameExit_h, gameExit_p;    // ゲーム終了ボタン
+    private ImageIcon credits_n, credits_h, credits_p;       // クレジットボタン
 
     // ==================================================================================
     // コンストラクタ
@@ -83,7 +85,7 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         gameStart_n = new ImageIcon("images/gameStartButton/gameStart_n.png");  // 通常状態のボタン
         gameStart_h = new ImageIcon("images/gameStartButton/gameStart_h.png");  // ロールオーバー時のアイコン
         gameStart_p = new ImageIcon("images/gameStartButton/gameStart_p.png");  // 押された時のアイコン
-        startGame = new GameButton("Game Start!!!", gameStart_n);               // ゲームスタートボタン
+        startGame = new GameButton("", gameStart_n);               // ゲームスタートボタン
         startGame.setPressedIcon(gameStart_p);                                  // 押された時の状態
         startGame.setRolloverIcon(gameStart_h);                                 // ロールオーバー時の状態
         startGame.setContentAreaFilled(false);                                  // デフォルトボタンの中身を消す
@@ -96,7 +98,7 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         gameExit_n = new ImageIcon("images/gameExitButton/gameExit_n.png");   // 通常状態のボタン
         gameExit_h = new ImageIcon("images/gameExitButton/gameExit_h.png");   // ロールオーバー時のボタン
         gameExit_p = new ImageIcon("images/gameExitButton/gameExit_p.png");   // 押された時のボタン
-        exit = new GameButton("Exit", gameExit_n);                            // Exitボタンの生成
+        exit = new GameButton("", gameExit_n);                            // Exitボタンの生成
         exit.setPressedIcon(gameExit_p);                                      // 押された時の状態
         exit.setRolloverIcon(gameExit_h);                                     // ロールオーバー時の状態
         exit.setContentAreaFilled(false);                                     // デフォルトボタンの中身を消す
@@ -106,18 +108,23 @@ public class Menu extends JPanel implements KeyListener, Runnable, ActionListene
         this.add(exit);
 
         /* スタッフクレジット */
-        /*
-        staffCredits = new GameButton("Staff Credits");
+        credits_n = new ImageIcon("images/creditsButton/credits_n.png");   // 通常状態のボタン
+        credits_h = new ImageIcon("images/creditsButton/credits_h.png");   // ロールオーバー時のボタン
+        credits_p = new ImageIcon("images/creditsButton/credits_p.png");   // 押された時のボタン
+        staffCredits = new GameButton("", credits_n);         // creditsボタンの生成
+        staffCredits.setPressedIcon(credits_p);                      // 押された時の状態
+        staffCredits.setRolloverIcon(credits_h);                     // ロールオーバー時の状態
+        staffCredits.setContentAreaFilled(false);                            // デフォルトボタンの中身を消す
+        staffCredits.setBorderPainted(false);                                // デフォルトボタンの枠線を消す
         staffCredits.addActionListener(this);
         staffCredits.setBounds(90, 360, 320, 80);
         this.add(staffCredits);
-        */
-        //Nexus_ex ne = new Nexus_ex();
     }
 
     // ==================================================================================
     // ボタン操作の受け付け
     // ==================================================================================
+    @Override
     public void actionPerformed(ActionEvent event) {
         /* ゲーム開始 */
         if (event.getSource() == startGame) {
